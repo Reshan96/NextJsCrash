@@ -47,7 +47,19 @@ Each page in the /pages directory gets its own JavaScript bundle, meaning only t
 ### 📁 Shared Code Splitting (Commons Chunk)
 Next.js automatically creates a common bundle for modules used across multiple pages (e.g., react, axios, utils.js). This avoids duplication and speeds up navigation.
 
+Whenever utilizing a client side management feature such as hooks, state management (useState etc.) remember to use the ```'use client';``` directive on top of the code.
 
+## Routing 
 
+- When routing is required use the name of the folder created inside the ```app``` folder as the route. For example if /user is required then create a folder named ```"user"``` inside app folder and create page.js inside that folder. 
+- For nested routing you should create folder inside the required nested routing folder. (Eg: /user/admin -> inside the user folder create ```admin``` folder then include a page.js
+-for dynamic routing when creating the folder wrap the name with square brackets. For example, /:userId -> then folder name should be [userId].js. This user Id can be accessed via below code snippet.
 
+```
+import {useRouter} from 'next/router'
 
+export default function Page(){
+    const router = userRouter()
+    return <p> UserId: {router.query.userId}</p>
+}
+```
