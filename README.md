@@ -63,3 +63,27 @@ export default function Page(){
     return <p> UserId: {router.query.userId}</p>
 }
 ```
+
+## Special file names
+
+### error.js
+
+Including this file in your app folder or route folders you can handle error automatically when occurs.
+Specify how the error should be handled inside the error.js. <strong> This should be a client side rendering file in order to
+catch the errors. 
+
+```
+'use client';
+
+import {useEffect} from 'react';
+
+const Error = ({error, reset}) => {
+    useEffect (() => {
+        console.error(error);
+    },[error]);
+}
+.....
+```
+
+### loading.js
+This will automatically applied when pages in the relevant folder are loading.
