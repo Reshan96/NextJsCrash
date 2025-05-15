@@ -119,3 +119,15 @@ const res = await fetch(
 ```
 This will statically fetch data in build time but we can specify a revalidation time to check the data again in a given
 interval. So it will fetch or refresh content when within a given refresh time.
+
+## api/route defining
+There are 2 ways you can handle api routes in nextJs
+1. file based route handling - you can create  a `api` folder and include <strong>route.js</strong>
+2. Create a route handler within the <strong>app</strong> folder itself. - But when creating a `/` type routes this will
+interfere with the existing page routes with the same name. 
+For and example, '/users' can be either a page route or an api route which NextJs wont be able to distinguish. 
+
+1st method is preferred. To create an api route, 
+
+`http://localhost:3000/api/users` -> 
+create a  <strong>app folder -> create `api` folder -> inside create `users` folder -> create `route.js`</strong>
