@@ -130,4 +130,42 @@ For and example, '/users' can be either a page route or an api route which NextJ
 1st method is preferred. To create an api route, 
 
 `http://localhost:3000/api/users` -> 
-create a  <strong>app folder -> create `api` folder -> inside create `users` folder -> create `route.js`</strong>
+create a  <strong> app folder -> create `api` folder -> inside create `users` folder -> create `route.js`</strong>
+
+## SEO
+To enhance SEO NextJs provides 2 different options to manage metadata of the website.
+
+1. Static metadata
+2. Dynamic metadata
+
+### Static metadata
+
+To add static metadata, on the top of your page.js
+
+```
+export const metadata - {
+    title:'Anything that suits'
+}
+
+and the output looks like below,
+
+<head>
+    <title>Anything that suits</title>
+</head>
+```
+
+### Dynamic metadata
+In case you want to specify the metadata based on the dynamic content such as parameters passed to the page,
+
+```
+export async function generateMetadata({params,searchParams}){
+    const product = await getProduct(params.id);
+    return {title: product:title};
+}
+
+and the output,
+
+<head>
+    <title>{{Product Name}}</title>
+</head>
+```
