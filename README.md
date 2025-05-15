@@ -87,3 +87,35 @@ const Error = ({error, reset}) => {
 
 ### loading.js
 This will automatically applied when pages in the relevant folder are loading.
+
+## Data Fetching
+
+### SSR - Server Side Rendering
+Each request to the server triggers a new rendering cycle and data fetch ensuring data is always update.
+```
+async function Page({params}){
+    const res = await fetch(
+        `https://somethingToBeFetched/${params.id}`,
+        {cache:'no store'}
+    );
+
+    const data = await res.json()
+    .....
+}
+```
+```cache: 'no store'``` ensures this does not store data in cache and re-fetches data every time.
+
+### SSG - Static Site Generation
+ Removing cache storing gives ability to store data once fetched. This can be used in incidence where content does not
+ change frequently. 
+
+ ### ISR - Incremental Static Generation
+
+```
+const res = await fetch(
+        `https://somethingToBeFetched/${params.id}`,
+        {next:{revalidate:10}}
+    );
+```
+This will statically fetch data in build time but we can specify a revalidation time to check the data again in a given
+interval. So it will fetch or refresh content when within a given refresh time.
