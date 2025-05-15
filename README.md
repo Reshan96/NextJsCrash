@@ -169,3 +169,6 @@ and the output,
     <title>{{Product Name}}</title>
 </head>
 ```
+
+# Application development
+npm install bcrypt mongodb mongoose next-auth
