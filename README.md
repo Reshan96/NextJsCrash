@@ -172,3 +172,36 @@ and the output,
 
 # Application development
 npm install bcrypt mongodb mongoose next-auth
+
+
+# ISR - Incremental Static Regeneration
+Update static content and update the 
+# SSG -  Static site generation 
+Content is generated at when built time (when you deploy the site). And served via a content delivery network (CDN). Result is cached and delivered.
+
+
+
+# RSC - React Server Components
+Dividing react components into 2 distinct types:
+    - Server Components - cannot use react hooks, but can perform server tasks such as read documents and fetch data from database
+    - Client Components - can use react hooks, but lacks server tasks. turn the component into a client component by 'use client' directive at the top
+                          of the component
+
+# Routing 
+
+NextJs uses file-system based routing for URLs
+
+## Routing Conventions
+
+1. All routes must reside in the app folder
+2. Route files must be named either page.js or page.tsx
+3. Each folder represents a segment of URL path.
+
+
+
+
+
+
+
+
+ 
