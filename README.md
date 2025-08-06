@@ -197,9 +197,52 @@ NextJs uses file-system based routing for URLs
 2. Route files must be named either page.js or page.tsx
 3. Each folder represents a segment of URL path.
 
+## not found route
 
+According to the next conventions add 'not-found' page to app root folder to add a global 'not found' page;
+You can create seperate 'not-found' pages in route folders to make the not found page more specific. 
+However you cannot pass props to the not-found page since it does not accepts any props according the Next conventions.
 
+As a workaround you can use 'usePathname()' react hook to get any prop from the pathname. 
+By default the components are server components therefore to use react hooks you have to change the not-found page to 
+client component by adding 'usr client' to the top.
 
+```
+import {notFound} from "next/navigation";
+
+import {notFound} from "next/navigation";
+
+export default async function Reviews(
+     {params}: Readonly<{params: Promise<{ blogId:string, reviewId:string }>;}>
+){
+
+    const { blogId, reviewId } = await params;
+    if(parseInt(reviewId) < 0){
+        notFound();  ,-- this will call the customized not-found page in the relevant folder
+    }
+    return <h1>Review {reviewId} for blog {blogId}</h1> 
+
+}
+
+```
+
+## route groups
+to group routes or the pages without having to use the root folder name as the route path, enclose the root folder name with brackets.
+Eg: to encapsule the login/register/forgot password pages inside the auth folder but you dont want the 'auth' string to be present in the url
+rename the folder as (auth)
+
+# creating private folders
+
+you can create private folders using underscore in front of the folder name. 
+Example: _lib
+Even if you create a page.tsx in _lib folder inside the app. Browser cannot navigate to the page.
+This can be useful when:
+ - Keeping your UI logic separate from routing logic
+ - Having a consistent way to organize internal files in your project
+ - Making it easier to group related files in your code editor
+ - Avoiding potential naming conflicts with future Next,js file naming conventions
+
+Note: if you actually want an underscore in our URL, then use "%5F" instead which is the url-encoded version of an underscore.
 
 
 
